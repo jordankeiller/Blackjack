@@ -1,0 +1,23 @@
+{
+  "name": "blackjack",
+  "version": "1.0.0",
+  "description": "Web-based implementation of the classic game, Blackjack.",
+  "main": "blackjack.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jordankeiller/Blackjack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jordankeiller/Blackjack/issues"
+  },
+  "homepage": "https://github.com/jordankeiller/Blackjack#readme",
+  "devDependencies": {
+    "jest": "^27.4.5"
+  }
+}
