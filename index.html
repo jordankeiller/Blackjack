@@ -1,56 +1,64 @@
 <html>
-  <head>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
+  <head> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   </head>
-  <body>
-    <div class="container h-100">
-      <div class="row align-items-center h-100">
-        <div class="col-8 mx-auto">
-          <div class="card container">
-            <h1>Blackjack - Jordan Keiller</h1>
+  <body onload="startGame()">
+    <div class="card container bg-light">
+      <h1>Blackjack - Jordan Keiller</h1>
 
-            <p>
-              Welcome to Blackjack! Please enter your name below and the number
-              of hands, up to a maximum of 3, that you would like to play.
-            </p>
-            <form>
-              <div class="mb-3">
-                <label for="playerName" class="form-label"
-                  >Your name</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="playerName"
-                  placeholder="e.g. John Smith"
-                  required
-                />
-              </div>
-              <div class="mb-3">
-                <label for="playerNumberOfHands" class="form-label"
-                  >Number of Hands</label
-                >
-                <input
-                  type="number"
-                  min="1"
-                  max="3"
-                  value="1"
-                  class="form-control"
-                  id="playerNumberOfHands"
-                />
-              </div>
-
-              <button type="submit" class="btn btn-primary">Let's Play!</button>
-            </form>
-          </div>
+      <p>
+        Welcome to Blackjack! 
+      </p>
+      <p>Please enter your name below and the number
+          of hands, up to a maximum of 3, that you would like to play.</p>
+      <form onsubmit="getPlayerInformation()">
+        <div class="mb-3">
+          <label for="playerName" class="form-label"
+            ><b>Your name</b></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="playerName"
+            placeholder="e.g. John Smith"
+            required
+          />
         </div>
-      </div>
+        <div class="mb-3">
+          <label for="playerNumberOfHands" class="form-label"
+            ><b>Number of Hands</b></label
+          >
+          <input
+            type="number"
+            min="1"
+            max="3"
+            value="1"
+            class="form-control"
+            id="playerNumberOfHands"
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Let's Play!</button>
+      </form>
     </div>
+    Your score:
+    <div id="playerScore">0</div>
+    <div id="result"></div>
+    <br />
+    Your cards:
+    <div id="playerCards"></div>
+    <br />
+    <button id="hit-button" type="button" onclick="hit()" class="btn btn-primary">Hit</button>
+    <button id="stay-button" type="button" onclick="stay()" class="btn btn-primary">Stay</button>
+    <button id="restart-button" type="button" onclick="window.location.reload()" class="btn btn-primary">
+      Play Again!
+    </button>
+
+    <p><b>todo list</b></p>
+    <p>Add unit testing</p>
+    <p>show the cards remaining in the deck</p>
+    <p>allow for multipile players</p>
+
     <script type="text/javascript" src="blackjack.js"></script>
   </body>
 </html>

@@ -2,8 +2,17 @@
 // each card is in one cardSuit. 4 cardSuits * 13 possible cardValues = 52 cards = a deck
 
 let cardDeck = [];
+let playerName;
+let playerNumberOfHands;
 let playerCards = [];
 let playerTotal = 0;
+
+function getPlayerInformation() {
+  playerName = document.getElementById("playerName").value;
+  playerNumberOfHands = document.getElementById("playerNumberOfHands").value;
+
+  
+}
 
 function newDeck() {
   let cardSuit = ["&hearts;", "&diams;", "&clubs;", "&spades;"];
@@ -128,6 +137,8 @@ function getCardValue(cardValue) {
   }
 }
 function startGame() {
+  console.log(playerName);
+  console.log(playerNumberOfHands);
   newDeck();
   startingCards();
   document.getElementById("restart-button").style.visibility = "hidden";
