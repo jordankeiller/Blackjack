@@ -2,10 +2,11 @@
 // each card is in one cardSuit. 4 cardSuits * 13 possible cardValues = 52 cards = a deck
 
 let cardDeck = [];
+let playerCards = [];
 let playerTotal = 0;
 
 function newDeck() {
-  let cardSuit = ["Heart", "Diamond", "Club", "Spade"];
+  let cardSuit = ["&hearts;", "&diams;", "&clubs;", "&spades;"];
   let cardValue = [
     "A",
     "2",
@@ -27,15 +28,18 @@ function newDeck() {
       cardDeck.push([cardSuit[i], cardValue[j]]);
     }
   }
+  shuffle(cardDeck);
 }
 
-function generateCard() {
-  // Random item line of code taken from: https://stackoverflow.com/questions/5915096/get-a-random-item-from-a-javascript-array
-  let randomCard = Math.floor(Math.random() * cardDeck.length);
-  let card = cardDeck[randomCard];
-  cardDeck.splice(randomCard, 1);
-  // return card as an array
-  return card;
+// taken from: https://javascript.info/task/shuffle
+// shuffles the entire deck
+function shuffle(cardDeck) {
+  return cardDeck.sort(() => Math.random() - 0.5);
+}
+
+// pulls card from the top of the deck
+function pullCard() {
+  return (card = cardDeck.shift());
 }
 
 function validateEndGame(move) {
@@ -44,25 +48,35 @@ function validateEndGame(move) {
       document.getElementById("hit-button").disabled = true;
       document.getElementById("stay-button").disabled = true;
       document.getElementById("result").innerHTML = "BUST! You lose!";
+      document.getElementById("restart-button").style.visibility = "visible";
     }
   } else {
     document.getElementById("hit-button").disabled = true;
     document.getElementById("stay-button").disabled = true;
     document.getElementById("result").innerHTML =
       "Validated! You have stuck on " + playerTotal + "!";
+    document.getElementById("restart-button").style.visibility = "visible";
   }
 }
 
 function hit() {
   console.log("hit");
-  let card = generateCard();
+  let card = pullCard();
+  updatePlayerCards(card);
   console.log(card);
   updatePlayerTotal(getCardValue(card[1]));
   validateEndGame("hit");
+  console.log(playerCards);
 }
 
 function stay() {
   validateEndGame("stay");
+}
+
+function updatePlayerCards(card) {
+  playerCards.push(card);
+
+  document.getElementById("playerCards").innerHTML = playerCards;
 }
 
 function updatePlayerTotal(value) {
@@ -71,12 +85,14 @@ function updatePlayerTotal(value) {
 }
 
 function startingCards() {
-  let cardOne = generateCard(),
-    cardTwo = generateCard();
-  console.log(cardOne);
-  console.log(cardTwo);
-  updatePlayerTotal(getCardValue(cardOne[1]));
-  updatePlayerTotal(getCardValue(cardTwo[1]));
+  let numberOfStartCards = 2;
+
+  for (let i = 0; i < numberOfStartCards; i++) {
+    let card = pullCard();
+    updatePlayerCards(card);
+    updatePlayerTotal(getCardValue(card[1]));
+    // console.log(card);
+  }
 }
 
 function getCardValue(cardValue) {
@@ -115,6 +131,8 @@ function getCardValue(cardValue) {
 }
 function startGame() {
   newDeck();
+  console.log(cardDeck);
   startingCards();
+  console.log(cardDeck);
+  document.getElementById("restart-button").style.visibility = "hidden";
 }
-
