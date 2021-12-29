@@ -23,7 +23,9 @@ function newDeck() {
     "Q",
   ];
 
+  // for each suit
   for (var i = 0; i < cardSuit.length; i++) {
+    // add the value to the relevant suit, then repeat for next suit once values are complete
     for (var j = 0; j < cardValue.length; j++) {
       cardDeck.push([cardSuit[i], cardValue[j]]);
     }
@@ -60,13 +62,10 @@ function validateEndGame(move) {
 }
 
 function hit() {
-  console.log("hit");
   let card = pullCard();
   updatePlayerCards(card);
-  console.log(card);
   updatePlayerTotal(getCardValue(card[1]));
   validateEndGame("hit");
-  console.log(playerCards);
 }
 
 function stay() {
@@ -76,7 +75,7 @@ function stay() {
 function updatePlayerCards(card) {
   playerCards.push(card);
 
-  document.getElementById("playerCards").innerHTML = playerCards;
+  document.getElementById("playerCards").innerHTML = playerCards.join(' ');
 }
 
 function updatePlayerTotal(value) {
@@ -131,8 +130,6 @@ function getCardValue(cardValue) {
 }
 function startGame() {
   newDeck();
-  console.log(cardDeck);
   startingCards();
-  console.log(cardDeck);
   document.getElementById("restart-button").style.visibility = "hidden";
 }
