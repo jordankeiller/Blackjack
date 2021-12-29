@@ -38,6 +38,33 @@ function generateCard() {
   return card;
 }
 
+function validateEndGame(move) {
+  if (move == "hit") {
+    if (playerTotal > 21) {
+      document.getElementById("hit-button").disabled = true;
+      document.getElementById("stay-button").disabled = true;
+      document.getElementById("result").innerHTML = "BUST! You lose!";
+    }
+  } else {
+    document.getElementById("hit-button").disabled = true;
+    document.getElementById("stay-button").disabled = true;
+    document.getElementById("result").innerHTML =
+      "Validated! You have stuck on " + playerTotal + "!";
+  }
+}
+
+function hit() {
+  console.log("hit");
+  let card = generateCard();
+  console.log(card);
+  updatePlayerTotal(getCardValue(card[1]));
+  validateEndGame("hit");
+}
+
+function stay() {
+  validateEndGame("stay");
+}
+
 function updatePlayerTotal(value) {
   playerTotal = playerTotal + value;
   document.getElementById("playerScore").innerHTML = playerTotal;
@@ -46,6 +73,8 @@ function updatePlayerTotal(value) {
 function startingCards() {
   let cardOne = generateCard(),
     cardTwo = generateCard();
+  console.log(cardOne);
+  console.log(cardTwo);
   updatePlayerTotal(getCardValue(cardOne[1]));
   updatePlayerTotal(getCardValue(cardTwo[1]));
 }
@@ -53,7 +82,14 @@ function startingCards() {
 function getCardValue(cardValue) {
   switch (cardValue) {
     case "A":
-      return 1;
+      // if one starting card is a jack, queen, king, or 10 and the other starting card is an ace then blackjack (equals 21)
+      // otherwise if the first starting cards equal to 10 or below 10 (e.g. 3 + 4 = 7) then the ace still counts for 11 when hit
+      // else if the player total is over 10, the ace always counts for 1 when hit
+      if (playerTotal <= 10) {
+        return 11;
+      } else {
+        return 1;
+      }
     case "2":
       return 2;
     case "3":
@@ -78,9 +114,7 @@ function getCardValue(cardValue) {
   }
 }
 function startGame() {
-  console.log("===== LOADED =====");
   newDeck();
   startingCards();
 }
 
-// console.log(cardDeck);
