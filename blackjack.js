@@ -74,8 +74,7 @@ function stay() {
 
 function updatePlayerCards(card) {
   playerCards.push(card);
-
-  document.getElementById("playerCards").innerHTML = playerCards.join(' ');
+  document.getElementById("playerCards").innerHTML = playerCards.join(" ");
 }
 
 function updatePlayerTotal(value) {
