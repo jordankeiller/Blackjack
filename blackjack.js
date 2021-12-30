@@ -43,12 +43,12 @@ function validateEndGame(move) {
   if (move == "hit") {
     if (playerTotal > 21) {
       updateGameButtons();
-      document.getElementById("result").innerHTML = "BUST! You lose!";
+      document.getElementById("result").innerHTML = "<b>BUST!</b> You lose!";
     }
   } else {
     updateGameButtons();
     document.getElementById("result").innerHTML =
-      "Validated! You have stuck on " + playerTotal + "!";
+      "<b>VALID!</b> You have stuck on " + playerTotal + "!";
   }
 }
 
