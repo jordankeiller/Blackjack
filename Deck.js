@@ -41,6 +41,10 @@ class Deck {
   getCardDeck() {
     return this.cardDeck;
   }
+
+  getCardDeckLength() {
+    return this.cardDeck.length;
+  }
 }
 
 export default Deck;

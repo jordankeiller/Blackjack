@@ -18,12 +18,17 @@ class Game {
     let card = this.Deck.pullCard(deck);
     this.Player.addPlayerCards(card);
     this.Player.addPlayerScore(this.Player.getPlayerCardValue(card[1]));
-    this.updateGame()
+    this.updateGame();
   }
 
-  updateGame(){
-      
-      console.log("game updated!")
+  updateGame() {
+    document.getElementById("cardDeckTotal").innerHTML =
+      this.Deck.getCardDeckLength();
+    document.getElementById("playerScore").innerHTML =
+      this.Player.getPlayerScore();
+    document.getElementById("playerCards").innerHTML =
+      this.Player.getPlayerCards().join(" ");
+    console.log("game updated!");
   }
 }
 
