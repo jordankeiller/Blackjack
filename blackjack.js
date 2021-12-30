@@ -2,17 +2,8 @@
 // each card is in one cardSuit. 4 cardSuits * 13 possible cardValues = 52 cards = a deck
 
 let cardDeck = [];
-let playerName;
-let playerNumberOfHands;
 let playerCards = [];
 let playerTotal = 0;
-
-function getPlayerInformation() {
-  playerName = document.getElementById("playerName").value;
-  playerNumberOfHands = document.getElementById("playerNumberOfHands").value;
-
-  
-}
 
 function newDeck() {
   let cardSuit = ["&hearts;", "&diams;", "&clubs;", "&spades;"];
@@ -48,33 +39,42 @@ function shuffle(cardDeck) {
   return cardDeck.sort(() => Math.random() - 0.5);
 }
 
-// pulls card from the top of the deck
-function pullCard() {
-  return (card = cardDeck.shift());
-}
-
 function validateEndGame(move) {
   if (move == "hit") {
     if (playerTotal > 21) {
-      document.getElementById("hit-button").disabled = true;
-      document.getElementById("stay-button").disabled = true;
+      updateGameButtons();
       document.getElementById("result").innerHTML = "BUST! You lose!";
-      document.getElementById("restart-button").style.visibility = "visible";
     }
   } else {
-    document.getElementById("hit-button").disabled = true;
-    document.getElementById("stay-button").disabled = true;
+    updateGameButtons();
     document.getElementById("result").innerHTML =
       "Validated! You have stuck on " + playerTotal + "!";
-    document.getElementById("restart-button").style.visibility = "visible";
   }
 }
 
+function updateGameButtons() {
+  document.getElementById("hit-button").disabled = true;
+  document.getElementById("stay-button").disabled = true;
+  document.getElementById("restart-button").style.visibility = "visible";
+}
+
 function hit() {
-  let card = pullCard();
+  pullCard();
+  validateEndGame("hit");
+}
+function startingCards() {
+  let numberOfStartCards = 2;
+  for (let i = 0; i < numberOfStartCards; i++) {
+    pullCard();
+  }
+}
+
+// pulls card from the top of the shuffled deck
+function pullCard() {
+  let card = cardDeck.shift();
   updatePlayerCards(card);
   updatePlayerTotal(getCardValue(card[1]));
-  validateEndGame("hit");
+  updateCardDeckTotal(cardDeck.length);
 }
 
 function stay() {
@@ -86,20 +86,13 @@ function updatePlayerCards(card) {
   document.getElementById("playerCards").innerHTML = playerCards.join(" ");
 }
 
+function updateCardDeckTotal(cardDeckTotal) {
+  document.getElementById("cardDeckTotal").innerHTML = cardDeckTotal;
+}
+
 function updatePlayerTotal(value) {
   playerTotal = playerTotal + value;
   document.getElementById("playerScore").innerHTML = playerTotal;
-}
-
-function startingCards() {
-  let numberOfStartCards = 2;
-
-  for (let i = 0; i < numberOfStartCards; i++) {
-    let card = pullCard();
-    updatePlayerCards(card);
-    updatePlayerTotal(getCardValue(card[1]));
-    // console.log(card);
-  }
 }
 
 function getCardValue(cardValue) {
@@ -137,8 +130,6 @@ function getCardValue(cardValue) {
   }
 }
 function startGame() {
-  console.log(playerName);
-  console.log(playerNumberOfHands);
   newDeck();
   startingCards();
   document.getElementById("restart-button").style.visibility = "hidden";
