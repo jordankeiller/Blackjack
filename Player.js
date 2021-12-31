@@ -1,5 +1,3 @@
-import Dealer from "./Dealer.js";
-
 class Player {
   constructor() {
     this.playerCards = [];
