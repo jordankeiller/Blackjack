@@ -9,6 +9,7 @@ class Game {
     this.Deck = new Deck();
     this.Player = new Player();
     this.Dealer = new Dealer();
+    this.possibleSoftSeventeen = false;
   }
 
   initialise() {
@@ -16,7 +17,11 @@ class Game {
     let newDeck = this.Deck.newDeck();
     let dealerCard = this.drawCard(newDeck);
     this.Dealer.addDealerCard(dealerCard);
-    this.Dealer.addDealerScore(this.Dealer.getDealerCardValue(dealerCard[1]));
+    let cardValue = this.Dealer.getDealerCardValue(dealerCard[1]);
+    this.Dealer.addDealerScore(cardValue);
+    if (cardValue == 11) {
+      this.possibleSoftSeventeen = true;
+    }
 
     for (let i = 0; i < 2; i++) {
       let card = this.drawCard(newDeck);
@@ -41,28 +46,40 @@ class Game {
     document.getElementById("restart-button").style.visibility = "visible";
   }
 
+  dealerShot() {
+    let dealerCard = this.drawCard(this.Deck.getCardDeck());
+    this.Dealer.addDealerCard(dealerCard);
+    let cardValue = this.Dealer.getDealerCardValue(dealerCard[1]);
+    if (cardValue == 11) {
+      this.possibleSoftSeventeen = true;
+    }
+    this.Dealer.addDealerScore(cardValue);
+
+    document.getElementById("dealerScore").innerHTML =
+      this.Dealer.getDealerScore();
+    document.getElementById("dealerCards").innerHTML =
+      this.Dealer.getDealerCard();
+  }
+
   stay() {
-    let dealerScore = this.Dealer.getDealerScore();
-    console.log(dealerScore);
-
-    while (dealerScore < 18) {
-      if (dealerScore == 17) {
-        break;
-      } else {
-        let dealerCard = this.drawCard(this.Deck.getCardDeck());
-        this.Dealer.addDealerCard(dealerCard);
-        this.Dealer.addDealerScore(
-          this.Dealer.getDealerCardValue(dealerCard[1])
-        );
-
-        document.getElementById("dealerScore").innerHTML =
-          this.Dealer.getDealerScore();
-        document.getElementById("dealerCards").innerHTML =
-          this.Dealer.getDealerCard();
-        dealerScore = this.Dealer.getDealerScore();
+    while (this.Dealer.getDealerScore() < 18) {
+      // if the dealers score is at 17
+      if (this.Dealer.getDealerScore() == 17) {
+        // if soft seventeen
+        if (this.possibleSoftSeventeen) {
+          console.log("i'm adding an extra card - soft 17 :)");
+          this.dealerShot();
+        }
+        //else hard 17
+        else {
+          break;
+        }
+      }
+      //else the players score is less than 17
+      else {
+        this.dealerShot();
       }
     }
-
     this.updateGame(1);
   }
 

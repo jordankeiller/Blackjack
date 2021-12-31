@@ -34,7 +34,9 @@
           <br />
           Dealer cards:
           <div id="dealerCards"></div>
+
           <br />
+          Dealer will hit on S17 and stand on H17 (see instructions)
         </div>
       </div>
     </div>
@@ -84,12 +86,13 @@
         <div class="card-body">
           <h5 class="card-title">Blackjack</h5>
           <h6 class="card-subtitle mb-2">How to Play</h6>
-          <div id="instruction-goal">
-            <h6>Goal:</h6>
-            Get your score to as close to 21 as possible without going over, and
-            get a higher score than the dealer.<br />
-          </div>
           <div id="instructions">
+            <div id="instruction-goal">
+              <h6>Goal:</h6>
+              Get your score to as close to 21 as possible without going over,
+              and get a higher score than the dealer.<br />
+            </div>
+
             <div id="instruction-actions">
               <h6 class="mt-2">Actions:</h6>
               <ul>
@@ -116,9 +119,9 @@
               choose to hit to draw another card from the deck to get their
               score closer to 21, or stay to keep the score they have. It is
               then the turn of the dealer, who will continously pull cards from
-              the deck so long as their score is 17 or under. Dealer must stand
-              on 17 in all scenarios. Any score under 17, the dealer will draw a
-              card.
+              the deck so long as their score is 17 or under. Dealer will hit on
+              S17 (soft 17) - (where an Ace counts as 11) and stand on H17 (hard
+              17). Any score under 17, the dealer will draw a card.
             </div>
             <div id="instruction-card-value">
               <h6 class="mt-2">Card Values:</h6>
