@@ -60,7 +60,7 @@ class Player {
   /**
    * Retrieve the players cards values as an integer instead of a string
    *
-   * @param {Array} cardValue - The cards value as a string in the form "A", "5", "10" for example.
+   * @param {string} cardValue - The cards value as a string in the form "A", "5", "10" for example.
    * @returns The cards value as an integer
    */
   getPlayerCardValue(cardValue) {
