@@ -11,7 +11,13 @@
     <br />
 
     <div id="row" class="row">
-      <div class="card col bg-light">
+      <div class="card col bg-secondary">
+        <div class="card-body"></div>
+      </div>
+    </div>
+
+    <div id="row" class="row mt-3">
+      <div id="dealerHand" class="card col ">
         <div class="card-body">
           <div class="row">
             <h5 class="card-title col">Dealer Hand</h5>
@@ -32,8 +38,8 @@
     </div>
 
     <div id="row" class="row mt-3">
-      <div class="card col bg-light">
-        <div class="card-body">
+      <div id="playerHand" class="card col ">
+        <div  class="card-body">
           <div class="row">
             <h5 class="card-title col">Your Hand</h5>
           </div>
@@ -68,6 +74,99 @@
           >
             Play Again!
           </button>
+        </div>
+      </div>
+    </div>
+    <div id="row" class="row mt-3">
+      <div class="card col bg-info">
+        <div class="card-body">
+          <h5 class="card-title">Blackjack</h5>
+          <h6 class="card-subtitle mb-2">How to Play</h6>
+          <div id="instruction-goal">
+            <h6>Goal:</h6>
+            Get your score to as close to 21 as possible without going over, and
+            get a higher score than the dealer.<br />
+          </div>
+          <div id="instructions">
+            <div id="instruction-actions">
+              <h6 class="mt-2">Actions:</h6>
+              <ul>
+                <li>
+                  <b>Hit:</b> This will draw a card from the deck. If the deck
+                  is out of cards, the already played cards will be reshuffled
+                  to make a new deck.
+                </li>
+                <li>
+                  <b>Stay:</b> This will stop drawing cards from the deck and
+                  compare your score against the dealers.
+                </li>
+                <li>
+                  <b>Play Again: </b> This will start a new game with a newly
+                  shuffled deck of cards.
+                </li>
+              </ul>
+            </div>
+            <div id="instruction-game-rules">
+              <h6>Game Rules:</h6>
+              At the beginning of the game, the player will draw 2 cards from
+              the shuffled card deck and the dealer will draw 1 card. The player
+              can see the 1 card that the dealer has drawn. The player can
+              choose to hit to draw another card from the deck to get their
+              score closer to 21, or stay to keep the score they have. It is
+              then the turn of the dealer, who will continously pull cards from
+              the deck so long as their score is 17 or under. Dealer must stand
+              on 17 in all scenarios. Any score under 17, the dealer will draw a
+              card.
+            </div>
+            <div id="instruction-card-value">
+              <h6 class="mt-2">Card Values:</h6>
+              <ul>
+                <li>
+                  <b>Number Cards: </b> These cards are worth their face value
+                  (2-10)
+                </li>
+                <li>
+                  <b>Jacks, Kings and Queens</b>: These cards are worth 10
+                  points each.
+                </li>
+                <li>
+                  <b>Aces: </b> If the score is equal to or less than 10, an Ace
+                  is worth 11 points. In all other cases, an Ace is worth 1
+                  point.
+                </li>
+                <li>
+                  <b>Suits:</b> The suit of the card (Heart, Diamond, Club,
+                  Spade) does not change the points value.
+                </li>
+              </ul>
+            </div>
+            <div id="instruction-game-win">
+              <h6 class="mt-2">Game Win:</h6>
+              The player will win:
+              <ul>
+                <li>
+                  if the player's score is greater than the dealer's score
+                  <b>AND</b> less than or equal to 21
+                </li>
+                <li>if the dealer's score is above 21</li>
+              </ul>
+              The dealer will win:
+              <ul>
+                <li>
+                  if the dealer's score is greater than the player's score
+                  <b>AND</b> less than or equal to 21
+                </li>
+                <li>if the player's score is above 21</li>
+              </ul>
+              The game will tie:
+              <ul>
+                <li>
+                  if the dealer and player have the exact same score
+                  <b>AND</b> the score is less than or equal to 21
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -68,6 +68,8 @@ class Game {
 
   playerWin() {
     this.changeButtonState();
+    document.getElementById("dealerHand").classList.add("bg-danger")
+    document.getElementById("playerHand").classList.add("bg-success")
     document.getElementById("result").innerHTML =
       "<b>YOU WIN!</b> Congratulations!";
     document.getElementById("dealerResult").innerHTML =
@@ -76,6 +78,8 @@ class Game {
 
   dealerWin() {
     this.changeButtonState();
+    document.getElementById("dealerHand").classList.add("bg-success")
+    document.getElementById("playerHand").classList.add("bg-danger")
     document.getElementById("result").innerHTML =
       "<b>YOU LOSE!</b> Maybe next time...";
     document.getElementById("dealerResult").innerHTML =
@@ -84,6 +88,8 @@ class Game {
 
   tie() {
     this.changeButtonState();
+    document.getElementById("dealerHand").classList.add("bg-warning")
+    document.getElementById("playerHand").classList.add("bg-warning")
     document.getElementById("result").innerHTML =
       "<b>TIE!</b> No winners this time...";
     document.getElementById("dealerResult").innerHTML =
