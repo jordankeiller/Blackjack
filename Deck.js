@@ -34,6 +34,9 @@ class Deck {
   }
 
   pullCard(cardDeck) {
+    if (this.getCardDeckLength() <= 1) {
+      cardDeck = this.newDeck();
+    }
     let card = cardDeck.shift();
     return card;
   }
