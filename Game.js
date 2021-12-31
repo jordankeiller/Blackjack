@@ -16,7 +16,8 @@ class Game {
     let newDeck = this.Deck.newDeck();
     let dealerCard = this.drawCard(newDeck);
     this.Dealer.addDealerCard(dealerCard);
-    this.Dealer.addDealerScore(this.Player.getPlayerCardValue(dealerCard[1]));
+    this.Dealer.addDealerScore(this.Dealer.getDealerCardValue(dealerCard[1]));
+
     for (let i = 0; i < 2; i++) {
       let card = this.drawCard(newDeck);
       this.hit(card);
@@ -51,7 +52,7 @@ class Game {
         let dealerCard = this.drawCard(this.Deck.getCardDeck());
         this.Dealer.addDealerCard(dealerCard);
         this.Dealer.addDealerScore(
-          this.Player.getPlayerCardValue(dealerCard[1])
+          this.Dealer.getDealerCardValue(dealerCard[1])
         );
 
         document.getElementById("dealerScore").innerHTML =
@@ -65,15 +66,55 @@ class Game {
     this.updateGame(1);
   }
 
+  playerWin() {
+    this.changeButtonState();
+    document.getElementById("result").innerHTML =
+      "<b>YOU WIN!</b> Congratulations!";
+    document.getElementById("dealerResult").innerHTML =
+      "<b>DEALER LOSES!</b> Maybe next time...";
+  }
+
+  dealerWin() {
+    this.changeButtonState();
+    document.getElementById("result").innerHTML =
+      "<b>YOU LOSE!</b> Maybe next time...";
+    document.getElementById("dealerResult").innerHTML =
+      "<b>DEALER WINS!</b> Congratulations!";
+  }
+
+  tie() {
+    this.changeButtonState();
+    document.getElementById("result").innerHTML =
+      "<b>TIE!</b> No winners this time...";
+    document.getElementById("dealerResult").innerHTML =
+      "<b>TIE!</b> No winners this time...";
+  }
+
   updateGame(finished) {
     if (finished) {
-      this.changeButtonState();
-      document.getElementById("result").innerHTML =
-        "<b>VALID!</b> You have stuck on " + this.Player.getPlayerScore() + "!";
-    } else if (this.Player.getPlayerScore() > 21) {
-      this.changeButtonState();
-      document.getElementById("result").innerHTML = "<b>BUST!</b> You lose!";
+      if (this.Dealer.getDealerScore() > 21) {
+        this.playerWin();
+        // dealer busts, player wins
+      } else {
+        if (this.Player.getPlayerScore() > this.Dealer.getDealerScore()) {
+          this.playerWin();
+          // player has more points than the dealer, player wins
+        } else if (
+          this.Player.getPlayerScore() === this.Dealer.getDealerScore()
+        ) {
+          this.tie();
+          // player and dealer have the exact same amount of points, so tie
+        } else {
+          this.dealerWin();
+          // dealer has more points than the player, dealer wins
+        }
+      }
     }
+    if (this.Player.getPlayerScore() > 21) {
+      this.dealerWin();
+      // player busts, dealer wins
+    }
+
     document.getElementById("cardDeckTotal").innerHTML =
       this.Deck.getCardDeckLength();
     document.getElementById("dealerScore").innerHTML =
