@@ -1,7 +1,10 @@
+import Dealer from "./Dealer.js";
+
 class Player {
   constructor() {
     this.playerCards = [];
     this.playerScore = 0;
+    this.Dealer = new Dealer();
   }
 
   addPlayerCards(card) {
@@ -26,7 +29,7 @@ class Player {
         // if one starting card is a jack, queen, king, or 10 and the other starting card is an ace then blackjack (equals 21)
         // otherwise if the first starting cards equal to 10 or below 10 (e.g. 3 + 4 = 7) then the ace still counts for 11 when hit
         // else if the player total is over 10, the ace always counts for 1 when hit
-        if (this.getPlayerScore() <= 10) {
+        if (this.getPlayerScore() || this.Dealer.getDealerScore() <= 10) {
           return 11;
         } else {
           return 1;

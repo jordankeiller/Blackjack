@@ -14,11 +14,28 @@
       <div class="card col bg-light">
         <div class="card-body">
           <div class="row">
-            <h5 class="card-title col">Hand 1</h5>
+            <h5 class="card-title col">Dealer Hand</h5>
             <h6 class="col text-end">
               Remaining cards in deck:
               <div id="cardDeckTotal">52</div>
             </h6>
+          </div>
+          Dealer score:
+          <div id="dealerScore">0</div>
+          <div id="dealerResult"></div>
+          <br />
+          Dealer cards:
+          <div id="dealerCards"></div>
+          <br />
+        </div>
+      </div>
+    </div>
+
+    <div id="row" class="row mt-3">
+      <div class="card col bg-light">
+        <div class="card-body">
+          <div class="row">
+            <h5 class="card-title col">Your Hand</h5>
           </div>
           Your score:
           <div id="playerScore">0</div>
@@ -66,7 +83,8 @@
         game.stay();
       };
       window.hit = function () {
-        game.drawCard(game.Deck.cardDeck);
+        let card = game.drawCard(game.Deck.cardDeck);
+        game.hit(card)
       };
     </script>
   </body>
