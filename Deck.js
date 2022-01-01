@@ -78,7 +78,7 @@ class Deck {
    * Pulls a card from the top of a deck of cards
    *
    * @param {Array} cardDeck - A deck of cards in the form [[cardSuit, cardValue], [cardSuit, cardValue], [cardSuit, cardValue] etc]
-   * @returns A card that has been pulled from the top of the deck
+   * @returns A card that has been pulled from the top of the deck in the form [cardSuit, cardValue]
    */
   pullCard(cardDeck) {
     // If the deck has run out of cards, create a new deck of cards and assign that new deck to the cardDeck variable
